@@ -9,4 +9,4 @@ data:
       - name: default
         protocol: layer2
         addresses:
-        - {{.Values.ip_range_start}}-{{.Values.ip_range_stop}}
+        - {{.Values.ipRangeStart}}-{{.Values.ipRangeStop}}

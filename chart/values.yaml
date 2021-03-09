@@ -1,4 +1,4 @@
-ip_range_start: 10.0.0.10
-ip_range_stop: 10.0.0.100 
-speaker_image_tag: main
-controller_image_tag: main
+ipRangeStart: 10.0.0.10
+ipRangeStop: 10.0.0.100 
+speakerImageTag: main
+controllerImageTag: main
