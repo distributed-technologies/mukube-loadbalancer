@@ -1,0 +1,6 @@
+apiVersion: v2
+name: mukube-loadbalancer
+version: v0.1.0
+maintainers:
+  - name: Jacob Crawford
+
