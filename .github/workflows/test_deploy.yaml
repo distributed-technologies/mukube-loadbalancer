@@ -25,11 +25,14 @@ jobs:
         run: kubectl get svc
       - name: curl nginx 
         run: curl https://172.18.0.10
+
   test-no-loadbalancer:
-    - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
-    - name: Create k8s Kind Cluster
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+          with:
+            ref: ${{ github.head_ref }}
+      - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1.1.0
       - name: Get nodes
         run: kubectl get nodes
