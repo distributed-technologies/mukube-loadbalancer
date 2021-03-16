@@ -5,6 +5,8 @@ metadata:
   labels:
     run: my-nginx-test
 spec:
+  type:
+    LoadBalancer
   ports:
   - port: 80
     protocol: TCP
