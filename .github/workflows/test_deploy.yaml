@@ -13,7 +13,10 @@ jobs:
         uses: helm/kind-action@v1.1.0
       - name: Get nodes
         run: kubectl get nodes
-  
+      - name: Get helm version
+        run: helm version
+      - name: list
+        run: ls
       
 
     
