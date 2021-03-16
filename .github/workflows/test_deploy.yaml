@@ -3,7 +3,7 @@ name: Create Cluster
 on: pull_request
 
 jobs:
-  create-cluster:
+  test-loadbalancer:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -11,12 +11,6 @@ jobs:
           ref: ${{ github.head_ref }}
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1.1.0
-      - name: Get nodes
-        run: kubectl get nodes
-      - name: Get helm version
-        run: helm version
-      - name: list
-        run: ls
       - name: Install loadbalancer
         run: helm install -f test/values.yaml test-lb chart --namespace metallb-system --create-namespace
       - name: Inspect docker network
@@ -29,10 +23,23 @@ jobs:
           time: 30s
       - name: Get svc
         run: kubectl get svc
-      - name: pods
-        run: kubectl get pods -n metallb-system
       - name: curl nginx 
         run: curl https://172.18.0.10
-      
+  test-no-loadbalancer:
+    - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+    - name: Create k8s Kind Cluster
+        uses: helm/kind-action@v1.1.0
+      - name: Get nodes
+        run: kubectl get nodes
+      - name: Deploy nginx
+        run: kubectl apply -f test/nginx-test.yaml
+      - name: Sleep for 30 seconds
+        uses: juliangruber/sleep-action@v1
+        with:
+          time: 30s
+      - name: Get svc
+        run: kubectl get svc
 
     
