@@ -26,9 +26,9 @@ jobs:
       - name: Get status
         run: echo LB_STATUS=$(kubectl get svc my-nginx-test -o json | jq '.status.loadBalanceringress[0].ip') >> $GITHUB_ENV
       - name: echo
-        run: echo ${env.LB_STATUS}
+        run: echo ${{ env.LB_STATUS }}
       - name: Test LoadBalancer has ip 
-        if: ${ env.LB_STATUS != 172.18.0.10 }
+        if: ${{ env.LB_STATUS != 172.18.0.10 }}
         run: exit 1
 
   test-no-loadbalancer:
@@ -52,9 +52,9 @@ jobs:
       - name: Get status
         run: echo LB_STATUS=$(kubectl get svc my-nginx-test -o json | jq '.status.loadBalancer') >> $GITHUB_ENV 
       - name: echo
-        run: echo ${env.LB_STATUS}
+        run: echo ${{ env.LB_STATUS }}
       - name: Test LoadBalancer object is empty
-        if: ${ env.LB_STATUS == "{}" }
+        if: ${{ env.LB_STATUS == "{}" }}
         run: exit 1
 
     
