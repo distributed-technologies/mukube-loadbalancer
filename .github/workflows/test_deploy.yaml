@@ -17,6 +17,8 @@ jobs:
         run: helm version
       - name: list
         run: ls
+      - name: Install loadbalancer
+        run: helm install chart
       
 
     
