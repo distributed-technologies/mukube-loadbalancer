@@ -24,7 +24,7 @@ jobs:
       - name: Get svc
         run: kubectl get svc
       - name: curl nginx 
-        run: curl https://172.18.0.10
+        run: curl http://172.18.0.10
 
   test-no-loadbalancer:
     runs-on: ubuntu-latest
