@@ -19,6 +19,8 @@ jobs:
         run: ls
       - name: Install loadbalancer
         run: helm install chart
+      - name: Inspect docker network
+        run: docker network inspect -f '{{.IPAM.Config}}' kind
       
 
     
