@@ -24,9 +24,9 @@ jobs:
       - name: Deploy nginx
         run: kubectl apply -f test/nginx-test.yaml
       - name: Sleep for 30 seconds
-        uses: jakejarvis/wait-action@master
+        uses: juliangruber/sleep-action@v1
         with:
-          time: '30s'
+          time: 30s
       - name: Get svc
         run: kubectl get svc
       
