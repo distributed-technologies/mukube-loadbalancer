@@ -18,7 +18,7 @@ jobs:
       - name: list
         run: ls
       - name: Install loadbalancer
-        run: helm install test-lb chart
+        run: helm install -f test/values.yaml test-lb chart 
       - name: Inspect docker network
         run: docker network inspect -f '{{.IPAM.Config}}' kind
       
