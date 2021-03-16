@@ -31,6 +31,8 @@ jobs:
         run: kubectl get svc
       - name: pods
         run: kubectl get pods -n metallb-system
+      - name: curl nginx 
+        run: curl https://172.18.0.10
       
 
     
