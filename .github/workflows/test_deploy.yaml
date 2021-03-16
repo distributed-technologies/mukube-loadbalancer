@@ -13,8 +13,6 @@ jobs:
         uses: helm/kind-action@v1.1.0
       - name: Install loadbalancer
         run: helm install -f test/values.yaml test-lb chart --namespace metallb-system --create-namespace
-      - name: Inspect docker network
-        run: docker network inspect -f '{{.IPAM.Config}}' kind
       - name: Deploy nginx
         run: kubectl apply -f test/nginx-test.yaml
       - name: Sleep for 30 seconds
@@ -25,6 +23,8 @@ jobs:
         run: kubectl get svc
       - name: curl nginx 
         run: curl http://172.18.0.10
+      - name: Get status
+        run: kubectl get svc my-nginx-test -o json | jq '.status.loadBalancer'
 
   test-no-loadbalancer:
     runs-on: ubuntu-latest
@@ -44,5 +44,7 @@ jobs:
           time: 30s
       - name: Get svc
         run: kubectl get svc
+      - name: Get status
+        run: kubectl get svc my-nginx-test -o json | jq '.status.loadBalancer'
 
     
