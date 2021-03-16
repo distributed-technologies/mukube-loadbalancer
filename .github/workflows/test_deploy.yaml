@@ -28,7 +28,7 @@ jobs:
       - name: echo
         run: echo ${env.LB_STATUS}
       - name: Test LoadBalancer has ip 
-        if: ${env.LB_STATUS != 172.18.0.10}
+        if: ${ env.LB_STATUS != 172.18.0.10 }
         run: exit 1
 
   test-no-loadbalancer:
@@ -54,7 +54,7 @@ jobs:
       - name: echo
         run: echo ${env.LB_STATUS}
       - name: Test LoadBalancer object is empty
-        if: ${env.LB_STATUS == "{}" }
+        if: ${ env.LB_STATUS == "{}" }
         run: exit 1
 
     
