@@ -57,5 +57,3 @@ jobs:
       - name: Test LoadBalancer object is empty
         if: ${{ env.LB_STATUS != '{}' }}
         run: exit 1
-
-    
