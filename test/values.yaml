@@ -2,3 +2,4 @@ ipRangeStart: 172.18.0.10
 ipRangeStop: 172.18.0.20
 speakerImageTag: main
 controllerImageTag: main
+imagePullPolicy: Always

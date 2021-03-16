@@ -303,7 +303,7 @@ spec:
               name: memberlist
               key: secretkey
         image: quay.io/metallb/speaker:{{.Values.speakerImageTag}}
-        imagePullPolicy: Never
+        imagePullPolicy: {{.Values.imagePullPolicy}}
         name: speaker
         ports:
         - containerPort: 7472
@@ -358,7 +358,7 @@ spec:
         - --port=7472
         - --config=config
         image: quay.io/metallb/controller:{{.Values.controllerImageTag}}
-        imagePullPolicy: Never
+        imagePullPolicy: {{.Values.imagePullPolicy}}
         name: controller
         ports:
         - containerPort: 7472
