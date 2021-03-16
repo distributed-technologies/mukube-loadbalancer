@@ -24,7 +24,12 @@ jobs:
       - name: curl nginx 
         run: curl http://172.18.0.10
       - name: Get status
-        run: kubectl get svc my-nginx-test -o json | jq '.status.loadBalancer'
+        run: echo LB_STATUS=$(kubectl get svc my-nginx-test -o json | jq '.status.loadBalanceringress[0].ip') >> $GITHUB_ENV
+      - name: echo
+        run: echo ${env.LB_STATUS}
+      - name: Test LoadBalancer has ip 
+        if: ${env.LB_STATUS != 172.18.0.10}
+        run: exit 1
 
   test-no-loadbalancer:
     runs-on: ubuntu-latest
@@ -45,6 +50,11 @@ jobs:
       - name: Get svc
         run: kubectl get svc
       - name: Get status
-        run: kubectl get svc my-nginx-test -o json | jq '.status.loadBalancer'
+        run: echo LB_STATUS=$(kubectl get svc my-nginx-test -o json | jq '.status.loadBalancer') >> $GITHUB_ENV 
+      - name: echo
+        run: echo ${env.LB_STATUS}
+      - name: Test LoadBalancer object is empty
+        if: ${env.LB_STATUS == "{}" }
+        run: exit 1
 
     
