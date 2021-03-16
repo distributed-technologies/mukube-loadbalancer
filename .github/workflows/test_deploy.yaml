@@ -30,8 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-          with:
-            ref: ${{ github.head_ref }}
+        with:
+          ref: ${{ github.head_ref }}
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1.1.0
       - name: Get nodes
