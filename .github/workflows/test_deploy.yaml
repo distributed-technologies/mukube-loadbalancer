@@ -21,6 +21,14 @@ jobs:
         run: helm install -f test/values.yaml test-lb chart 
       - name: Inspect docker network
         run: docker network inspect -f '{{.IPAM.Config}}' kind
+      - name: Deploy nginx
+        run: kubectl apply -f test/nginx-test.yaml
+      - name: Sleep for 30 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '30s'
+      - name: Get svc
+        run: kubectl get svc
       
 
     
