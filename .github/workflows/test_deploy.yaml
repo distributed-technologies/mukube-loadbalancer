@@ -1,4 +1,5 @@
-name: Create Cluster
+# Testing using KinD https://kind.sigs.k8s.io/docs/user/loadbalancer/
+name: Test the deployment of the load balancer
 
 on: pull_request
 
